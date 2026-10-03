@@ -5,7 +5,7 @@ let activeCourse = localStorage.getItem('typo-course') || 'keys-1';
 const DAILY = 3;
 
 // Mascots
-$('#logo').innerHTML = Mascot.svg(); $('#hero-mascot').innerHTML = Mascot.svg(); $('#welcome-mascot').innerHTML = Mascot.svg();
+Mascot.logo($('#logo')); Mascot.logo($('#hero-mascot')); Mascot.logo($('#welcome-mascot'));
 
 // Header menu
 const menu = $('#menu'), menuBtn = $('#menu-btn');

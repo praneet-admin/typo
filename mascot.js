@@ -30,6 +30,16 @@ const Mascot = (() => {
   };
   // react: quick pop on each keystroke, wobble on error, party on success
   const react = (el, kind) => { if (!el) return; el.classList.remove('is-tap', 'is-oops', 'is-party'); void el.offsetWidth; el.classList.add('is-' + kind); };
-  return { svg, favicon, react };
+  // Brand logo: uses logo.png when present, falls back to the SVG mascot.
+  const logo = (el, cls = '') => {
+    if (!el) return;
+    const img = new Image(); img.alt = 'TYPO'; img.className = 'brand-logo ' + cls; img.decoding = 'async';
+    img.onload = () => { el.innerHTML = ''; el.appendChild(img); el.classList.add('has-logo'); };
+    img.onerror = () => { el.innerHTML = svg(cls); };
+    img.src = 'logo.png';
+    el.innerHTML = svg(cls);
+  };
+  return { svg, favicon, react, logo };
 })();
 Mascot.favicon();
+(function(){ const i = new Image(); i.onload = () => { document.querySelectorAll('link[rel=icon]').forEach(l => l.href = 'logo.png'); }; i.src = 'logo.png'; })();

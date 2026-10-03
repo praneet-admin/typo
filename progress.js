@@ -11,7 +11,7 @@ const Progress = (() => {
   const today = () => new Date().toISOString().slice(0, 10);
   const load = () => { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch { return {}; } };
   const save = d => { try { localStorage.setItem(KEY, JSON.stringify(d)); } catch {} };
-  let data = Object.assign({ lessons: {}, xp: 0, seconds: 0, days: {}, theme: 'light' }, load());
+  let data = Object.assign({ lessons: {}, xp: 0, seconds: 0, days: {}, theme: 'dark' }, load());
 
   function record(lessonId, result) {
     const prev = data.lessons[lessonId];
