@@ -3,74 +3,112 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TYPO — Typing Lessons</title>
+<title>TYPO — Learn to type</title>
+<meta name="description" content="TYPO: friendly typing lessons in Gengo's style. Learn the keys, build speed, keep a streak.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="topnav">
-  <a class="brand" href="index.html"><span class="brand-mark">⌨</span>TYPO</a>
-  <nav class="nav-links">
-    <a style="--n:1" href="index.html" class="active">Lessons</a>
-    <a style="--n:2" href="lesson.html?id=test-1">Tests</a>
-    <a style="--n:3" href="#" id="nav-progress">Progress</a>
-    <a style="--n:4" href="https://praneet-admin.github.io/gengo/" class="nav-gengo" title="Learn vocabulary with Gengo">言語 Gengo ↗</a>
-  </nav>
-  <div class="nav-right">
-    <button class="btn btn-ghost" id="theme-toggle" title="Toggle dark mode">🌙</button>
-    <button class="btn btn-primary" id="reset-progress">Reset progress</button>
+<header class="app-header">
+  <a class="brand" href="index.html">
+    <span class="logo-wrap" id="logo"></span>
+    <span class="brand-text"><span class="brand-name">TYPO</span><span class="brand-tagline">LESSONS</span></span>
+  </a>
+  <div class="header-right">
+    <div class="pills">
+      <span class="pill" id="pill-streak" title="Day streak"><span class="flame">🔥</span><b id="streak-n">0</b></span>
+      <span class="pill" id="pill-xp" title="XP"><span>✦</span><b id="xp-n">0</b></span>
+      <span class="pill" id="pill-goal" title="Lessons today"><span class="goal-dot" id="goal-dot"></span><b id="goal-n">0/3</b></span>
+    </div>
+    <button class="menu-btn" id="menu-btn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <div class="menu" id="menu" hidden>
+      <button id="theme-toggle">🌙 Dark mode</button>
+      <button id="nav-progress">📈 My progress</button>
+      <a href="lesson.html?id=test-1">⏱ 1 minute test</a>
+      <a href="https://praneet-admin.github.io/gengo/" class="menu-gengo">言語 Open Gengo ↗</a>
+      <button id="reset-progress" class="danger">Reset progress</button>
+    </div>
   </div>
 </header>
 
-<section class="profile-bar">
-  <div class="avatar" id="avatar">🌱</div>
-  <div class="profile-level">
-    <div class="level-name" id="level-name">Typing Seedling (1/5)</div>
-    <div class="xp-bar"><div class="xp-fill" id="xp-fill"></div></div>
-    <div class="xp-text" id="xp-text">0 / 500 xp</div>
-  </div>
-  <div class="stats">
-    <div class="stat"><span class="stat-ico">⚡</span><div><small>Avg Speed</small><b id="stat-wpm">--</b></div></div>
-    <div class="stat"><span class="stat-ico">🎯</span><div><small>Avg Accuracy</small><b id="stat-acc">--</b></div></div>
-    <div class="stat"><span class="stat-ico">⏱</span><div><small>Typing Time</small><b id="stat-time">--</b></div></div>
-  </div>
-  <div class="daily-goal">
-    <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="34"/><circle id="goal-ring" cx="40" cy="40" r="34"/></svg>
-    <div class="goal-text"><small>DAILY GOAL</small><b id="goal-time">00:00</b><small>/ 15:00</small></div>
-  </div>
-</section>
-
-<div class="banner" id="banner">
-  <span>Fast fingers need big words too — practise vocabulary with our sister app <b>Gengo</b>.</span>
-  <a class="btn btn-banner" href="https://praneet-admin.github.io/gengo/">Open Gengo ↗</a>
-  <b id="streak">🔥 0 day streak</b>
-</div>
-
 <main class="layout">
-  <aside class="sidebar" id="sidebar"></aside>
-  <section class="content">
-    <div class="course-card">
-      <div class="course-head">
-        <div class="course-progress"><div class="course-progress-fill" id="course-fill"></div><span id="course-pct">0% Complete</span></div>
-        <button class="btn btn-light" id="cert-btn">Print Unit Certificate</button>
+  <section class="panel hero-panel">
+    <h1 class="panel-title">Learn to type<span class="title-bar"></span></h1>
+    <p class="panel-sub"><span class="typewriter" id="typewriter"></span><span class="caret"></span></p>
+    <div class="hero">
+      <div class="hero-keys" id="hero-keys" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <div class="hero-mascot" id="hero-mascot"></div>
+        <div>
+          <b id="hero-title">Pick up where you left off</b>
+          <p id="hero-text">Ten focused minutes a day is all it takes.</p>
+          <a class="btn btn-primary btn-lg" id="hero-cta" href="lesson.html?id=k1-1">Start typing ▶</a>
+        </div>
       </div>
-      <div id="units"></div>
     </div>
+  </section>
+
+  <div class="cards-3">
+    <section class="panel today-card">
+      <div class="card-head"><h2>Today</h2><span class="xp-pill" id="today-pill">0/3</span></div>
+      <div class="steps" id="steps"><i data-s="1">1</i><em></em><i data-s="2">2</i><em></em><i data-s="3">★</i></div>
+      <p class="muted" id="today-text">3 lessons to hit today's goal.</p>
+    </section>
+    <section class="panel speed-card">
+      <div class="card-head"><h2>Your speed</h2><span class="xp-pill" id="level-pill">Lv 1</span></div>
+      <div class="speed-row">
+        <div class="ring"><svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="34"/><circle id="goal-ring" cx="40" cy="40" r="34"/></svg><div class="ring-text"><b id="stat-wpm">--</b><small>wpm</small></div></div>
+        <div class="speed-stats">
+          <div><small>Accuracy</small><b id="stat-acc">--</b></div>
+          <div><small>Practice</small><b id="stat-time">--</b></div>
+          <div><small>Level</small><b id="level-name">Seedling</b></div>
+        </div>
+      </div>
+      <div class="xp-bar"><div class="xp-fill" id="xp-fill"></div></div>
+      <p class="muted" id="xp-text">0 / 500 xp to next level</p>
+    </section>
+    <section class="panel gengo-card">
+      <div class="card-head"><h2>Sister app</h2><span class="xp-pill">言語</span></div>
+      <p class="muted">Fast fingers need big words. <b>Gengo</b> teaches vocabulary that sticks: look it up, hear it, keep it.</p>
+      <a class="btn btn-gengo" href="https://praneet-admin.github.io/gengo/">Open Gengo ↗</a>
+    </section>
+  </div>
+
+  <section class="panel lessons-panel">
+    <h2 class="panel-title small">Your lessons<span class="title-bar"></span></h2>
+    <div class="chips" id="chips"></div>
+    <div class="course-head">
+      <div class="course-progress"><div class="course-progress-fill" id="course-fill"></div><span id="course-pct">0% complete</span></div>
+      <button class="btn btn-ghost btn-small" id="cert-btn">🎓 Certificate</button>
+    </div>
+    <div id="units"></div>
   </section>
 </main>
 
 <div class="modal" id="progress-modal" hidden>
   <div class="modal-box">
-    <h2>Your Progress</h2>
+    <h2>Your progress</h2>
     <div id="progress-body"></div>
     <button class="btn btn-primary" id="close-progress">Close</button>
+  </div>
+</div>
+
+<div class="modal" id="welcome" hidden>
+  <div class="modal-box welcome">
+    <div class="welcome-mascot" id="welcome-mascot"></div>
+    <small class="eyebrow">Welcome to TYPO</small>
+    <h2>Hi, I'm Typo! 👋</h2>
+    <p>Eight arms, zero typos. I'll teach you to type without looking, one key at a time. Short lessons, live speed, and a streak to keep.</p>
+    <a class="btn btn-primary btn-lg" href="lesson.html?id=k1-1">Start my first lesson</a>
+    <button class="btn btn-ghost" id="welcome-skip">I'll look around first</button>
   </div>
 </div>
 
 <script src="data.js"></script>
 <script src="progress.js"></script>
 <script src="effects.js"></script>
+<script src="mascot.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

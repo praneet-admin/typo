@@ -6,8 +6,11 @@ const lesson = CURRICULUM.byId[id] || CURRICULUM.allLessons[0];
 const idx = CURRICULUM.allLessons.indexOf(lesson);
 const next = CURRICULUM.allLessons[idx + 1];
 
-$('#unit-label').textContent = `${lesson.courseName} · ${lesson.unitTitle}`;
-$('#lesson-label').textContent = lesson.name;
+$('#unit-label').textContent = lesson.name.toUpperCase();
+$('#unit-eyebrow').textContent = `${lesson.courseName} · ${lesson.unitTitle}`;
+$('#lesson-label').innerHTML = lesson.name + '<span class="title-bar"></span>';
+$('#logo').innerHTML = Mascot.svg(); $('#text-mascot').innerHTML = Mascot.svg(); $('#result-mascot').innerHTML = Mascot.svg();
+const mascots = () => [$('#logo .mascot'), $('#text-mascot .mascot')];
 $('#intro').innerHTML = lesson.intro || '';
 document.title = `TYPO — ${lesson.name}`;
 
@@ -92,7 +95,7 @@ function updateStats() {
   const errs = totals.errors + screenErrors;
   const acc = typed + errs ? Math.max(0, Math.round((typed) / (typed + errs) * 100)) : 100;
   if ($('#live-wpm').textContent !== String(wpm)) Effects.bump($('#live-wpm'));
-  $('#live-wpm').textContent = wpm; $('#live-acc').textContent = acc + '%'; $('#live-err').textContent = errs;
+  $('#live-wpm').textContent = wpm; $('#live-acc').textContent = acc + '%'; $('#live-err').textContent = errs + (errs === 1 ? ' error' : ' errors'); $('#live-err').classList.toggle('has', errs > 0);
   $('#live-time').textContent = lesson.timed ? fmtTime(Math.max(0, lesson.timed - secs)) : fmtTime(secs);
   if (lesson.timed && secs >= lesson.timed) finish();
   return { wpm, acc, errs, typed, secs };
@@ -110,13 +113,14 @@ function onKey(e) {
   startTimer();
   const expected = text[pos];
   if (e.key === expected) {
-    spans[pos].classList.remove('cur', 'bad'); spans[pos].classList.add('ok'); flashKey(e.key, false); click(false);
+    spans[pos].classList.remove('cur', 'bad'); spans[pos].classList.add('ok'); flashKey(e.key, false); click(false); mascots().forEach(m => Mascot.react(m, 'tap'));
     pos++;
     if (pos >= text.length) { nextScreen(); return; }
     spans[pos].classList.add('cur'); spans[pos].scrollIntoView({ block: 'nearest' }); highlightNext(text[pos]);
+    const look = (pos / text.length) * 4 - 2; document.querySelectorAll('#text-mascot .pupil').forEach(p => p.style.transform = `translate(${look.toFixed(1)}px, 0)`);
   } else {
     screenErrors++; spans[pos].classList.add('bad'); flashKey(e.key, true); click(true);
-    const tb = $('#text-box'); tb.classList.remove('is-shake'); void tb.offsetWidth; tb.classList.add('is-shake');
+    const tb = $('#text-box'); tb.classList.remove('is-shake'); void tb.offsetWidth; tb.classList.add('is-shake'); mascots().forEach(m => Mascot.react(m, 'oops'));
   }
   updateStats();
 }
@@ -136,13 +140,14 @@ function finish() {
   const acc = typed + errs ? Math.round(typed / (typed + errs) * 100) : 100;
   const r = Progress.record(lesson.id, { wpm, acc, chars: typed, seconds: Math.round(secs) });
   $('#result-stars').innerHTML = '★'.repeat(r.stars) + `<span class="off">${'★'.repeat(3 - r.stars)}</span>`;
-  $('#result-title').textContent = lesson.test ? 'Test complete!' : r.stars === 3 ? 'Perfect! Lesson complete' : 'Lesson complete!';
+  $('#result-title').textContent = lesson.test ? 'Test complete!' : r.stars === 3 ? 'Perfect! Typo is proud 🐙' : r.stars === 2 ? 'Lesson complete!' : 'Done. Let\'s tighten accuracy';
   $('#r-wpm').textContent = wpm; $('#r-acc').textContent = acc + '%'; $('#r-err').textContent = errs; $('#r-xp').textContent = '+' + r.xp;
   $('#result-note').textContent = acc < 92 ? 'Slow down a little: accuracy below 92% costs stars.' : wpm < 20 ? 'Great accuracy. Speed will follow with practice.' : 'Nice rhythm. Keep it up!';
   const nb = $('#r-next');
   if (next) nb.href = `lesson.html?id=${next.id}`; else { nb.textContent = 'Back to lessons'; nb.href = 'index.html?done=1'; }
   $('#result-modal').hidden = false;
   if (r.stars >= 2) Effects.confetti(r.stars === 3 ? 48 : 28);
+  setTimeout(() => Mascot.react($('#result-mascot .mascot'), 'party'), 0);
   setTimeout(() => $('#result-stars').classList.add('is-celebrating'), 150);
   $('#screen-fill').style.width = '100%';
 }
