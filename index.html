@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TYPO — Typing Lessons</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topnav">
+  <a class="brand" href="index.html"><span class="brand-mark">⌨</span>TYPO</a>
+  <nav class="nav-links">
+    <a style="--n:1" href="index.html" class="active">Lessons</a>
+    <a style="--n:2" href="lesson.html?id=test-1">Tests</a>
+    <a style="--n:3" href="#" id="nav-progress">Progress</a>
+    <a style="--n:4" href="https://praneet-admin.github.io/gengo/" class="nav-gengo" title="Learn vocabulary with Gengo">言語 Gengo ↗</a>
+  </nav>
+  <div class="nav-right">
+    <button class="btn btn-ghost" id="theme-toggle" title="Toggle dark mode">🌙</button>
+    <button class="btn btn-primary" id="reset-progress">Reset progress</button>
+  </div>
+</header>
+
+<section class="profile-bar">
+  <div class="avatar" id="avatar">🌱</div>
+  <div class="profile-level">
+    <div class="level-name" id="level-name">Typing Seedling (1/5)</div>
+    <div class="xp-bar"><div class="xp-fill" id="xp-fill"></div></div>
+    <div class="xp-text" id="xp-text">0 / 500 xp</div>
+  </div>
+  <div class="stats">
+    <div class="stat"><span class="stat-ico">⚡</span><div><small>Avg Speed</small><b id="stat-wpm">--</b></div></div>
+    <div class="stat"><span class="stat-ico">🎯</span><div><small>Avg Accuracy</small><b id="stat-acc">--</b></div></div>
+    <div class="stat"><span class="stat-ico">⏱</span><div><small>Typing Time</small><b id="stat-time">--</b></div></div>
+  </div>
+  <div class="daily-goal">
+    <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="34"/><circle id="goal-ring" cx="40" cy="40" r="34"/></svg>
+    <div class="goal-text"><small>DAILY GOAL</small><b id="goal-time">00:00</b><small>/ 15:00</small></div>
+  </div>
+</section>
+
+<div class="banner" id="banner">
+  <span>Fast fingers need big words too — practise vocabulary with our sister app <b>Gengo</b>.</span>
+  <a class="btn btn-banner" href="https://praneet-admin.github.io/gengo/">Open Gengo ↗</a>
+  <b id="streak">🔥 0 day streak</b>
+</div>
+
+<main class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+  <section class="content">
+    <div class="course-card">
+      <div class="course-head">
+        <div class="course-progress"><div class="course-progress-fill" id="course-fill"></div><span id="course-pct">0% Complete</span></div>
+        <button class="btn btn-light" id="cert-btn">Print Unit Certificate</button>
+      </div>
+      <div id="units"></div>
+    </div>
+  </section>
+</main>
+
+<div class="modal" id="progress-modal" hidden>
+  <div class="modal-box">
+    <h2>Your Progress</h2>
+    <div id="progress-body"></div>
+    <button class="btn btn-primary" id="close-progress">Close</button>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="progress.js"></script>
+<script src="effects.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
