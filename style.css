@@ -396,3 +396,14 @@ small { color: var(--ink-500); font-size: .72rem; font-weight: 800; letter-spaci
 :root[data-theme="dark"] .modal-box { background: #2e1739; border: 2px solid #6a3a7e; box-shadow: 0 8px 0 #4a1458, 0 30px 70px -20px rgba(0,0,0,.9); }
 :root[data-theme="dark"] .modal-box p { color: #f1d4e8; }
 :root[data-theme="dark"] .modal-box h2 { color: #fff3fa; }
+
+/* turtle cutout logo on a gradient disc */
+.has-logo { border-radius: 50%; background: linear-gradient(135deg, #C654C3, #FFC0DE); display: grid; place-items: center; overflow: hidden; box-shadow: inset 0 0 0 3px rgba(142,30,162,.55); }
+.has-logo .brand-logo { width: 86%; height: 86%; object-fit: contain; object-position: center 60%; margin-top: 10%; filter: drop-shadow(0 3px 4px rgba(0,0,0,.28)); }
+.logo-wrap.has-logo { width: 54px; height: 54px; }
+.hero-mascot.has-logo .brand-logo { animation: bob 5s ease-in-out infinite; }
+.text-mascot.has-logo .brand-logo { animation: none; }
+.brand-logo.is-oops { animation: shake 320ms var(--ease) !important; }
+.brand-logo.is-party { animation: celebrate 700ms var(--bounce) 2 !important; }
+:root[data-theme="dark"] .has-logo { box-shadow: inset 0 0 0 3px rgba(255,192,222,.35), 0 6px 18px -8px rgba(198,84,195,.6); }
+@media (max-width: 640px) { .logo-wrap.has-logo { width: 44px; height: 44px; } }

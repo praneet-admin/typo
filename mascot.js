@@ -38,7 +38,16 @@ const Mascot = (() => {
     document.head.appendChild(link);
   };
   const react = (el, kind) => { if (!el) return; el.classList.remove('is-tap', 'is-oops', 'is-party'); void el.offsetWidth; el.classList.add('is-' + kind); };
-  const logo = (el, cls = '') => { if (el) { el.innerHTML = svg(cls); el.classList.remove('has-logo'); } };
+  // Brand logo: the turtle cutout (logo.png) on a gradient disc; SVG fallback if the image is missing.
+  const logo = (el, cls = '') => {
+    if (!el) return;
+    const img = new Image(); img.alt = 'Typo the tortoise'; img.className = 'brand-logo mascot ' + cls; img.decoding = 'async';
+    img.onload = () => { el.innerHTML = ''; el.appendChild(img); el.classList.add('has-logo'); };
+    img.onerror = () => { el.innerHTML = svg(cls); el.classList.remove('has-logo'); };
+    img.src = 'logo.png?v=7';
+    el.innerHTML = svg(cls);
+  };
   return { svg, favicon, react, logo };
 })();
 Mascot.favicon();
+(function(){ const i = new Image(); i.onload = () => { document.querySelectorAll('link[rel=icon]').forEach(l => l.href = 'logo.png?v=7'); }; i.src = 'logo.png?v=7'; })();
