@@ -373,3 +373,9 @@ small { color: var(--ink-500); font-size: .72rem; font-weight: 800; letter-spaci
 .hero-mascot .brand-logo, .welcome-mascot .brand-logo, .result-mascot .brand-logo { animation: float 3s ease-in-out infinite; }
 .text-mascot .brand-logo { border-radius: 50%; }
 :root[data-theme="dark"] .brand-tagline { color: #FFC0DE; }
+/* turtle logo in the lesson text box */
+.text-mascot.has-logo { border-radius: 50%; overflow: hidden; }
+.text-mascot .brand-logo { animation: none; }
+.brand-logo.is-tap { animation: tap 180ms var(--bounce); }
+.brand-logo.is-oops { animation: shake 320ms var(--ease); }
+.brand-logo.is-party { animation: celebrate 700ms var(--bounce) 2; }

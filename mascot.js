@@ -33,7 +33,7 @@ const Mascot = (() => {
   // Brand logo: uses logo.png when present, falls back to the SVG mascot.
   const logo = (el, cls = '') => {
     if (!el) return;
-    const img = new Image(); img.alt = 'TYPO'; img.className = 'brand-logo ' + cls; img.decoding = 'async';
+    const img = new Image(); img.alt = 'TYPO'; img.className = 'brand-logo mascot ' + cls; img.decoding = 'async';
     img.onload = () => { el.innerHTML = ''; el.appendChild(img); el.classList.add('has-logo'); };
     img.onerror = () => { el.innerHTML = svg(cls); };
     img.src = 'logo.png';

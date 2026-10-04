@@ -9,7 +9,7 @@ const next = CURRICULUM.allLessons[idx + 1];
 $('#unit-label').textContent = lesson.name.toUpperCase();
 $('#unit-eyebrow').textContent = `${lesson.courseName} · ${lesson.unitTitle}`;
 $('#lesson-label').innerHTML = lesson.name + '<span class="title-bar"></span>';
-Mascot.logo($('#logo')); $('#text-mascot').innerHTML = Mascot.svg(); Mascot.logo($('#result-mascot'));
+Mascot.logo($('#logo')); Mascot.logo($('#text-mascot')); Mascot.logo($('#result-mascot'));
 const mascots = () => [$('#logo .mascot'), $('#text-mascot .mascot')];
 $('#intro').innerHTML = lesson.intro || '';
 document.title = `TYPO — ${lesson.name}`;
