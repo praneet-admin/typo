@@ -140,7 +140,7 @@ function finish() {
   const acc = typed + errs ? Math.round(typed / (typed + errs) * 100) : 100;
   const r = Progress.record(lesson.id, { wpm, acc, chars: typed, seconds: Math.round(secs) });
   $('#result-stars').innerHTML = '★'.repeat(r.stars) + `<span class="off">${'★'.repeat(3 - r.stars)}</span>`;
-  $('#result-title').textContent = lesson.test ? 'Test complete!' : r.stars === 3 ? 'Perfect! Typo is proud 🐙' : r.stars === 2 ? 'Lesson complete!' : 'Done. Let\'s tighten accuracy';
+  $('#result-title').textContent = lesson.test ? 'Test complete!' : r.stars === 3 ? 'Perfect! Typo is proud 🐢' : r.stars === 2 ? 'Lesson complete!' : 'Done. Let\'s tighten accuracy';
   $('#r-wpm').textContent = wpm; $('#r-acc').textContent = acc + '%'; $('#r-err').textContent = errs; $('#r-xp').textContent = '+' + r.xp;
   $('#result-note').textContent = acc < 92 ? 'Slow down a little: accuracy below 92% costs stars.' : wpm < 20 ? 'Great accuracy. Speed will follow with practice.' : 'Nice rhythm. Keep it up!';
   const nb = $('#r-next');

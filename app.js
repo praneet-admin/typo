@@ -15,7 +15,7 @@ $('#theme-toggle').addEventListener('click', () => { $('#theme-toggle').textCont
 $('#theme-toggle').textContent = Progress.data.theme === 'dark' ? '☀️ Light mode' : '🌙 Dark mode';
 
 // Typewriter subtitle
-const LINES = ['Look at the screen, not your hands.', 'Eight arms. Zero typos.', 'Ten minutes a day builds real speed.', 'Home row first, then the whole board.'];
+const LINES = ['Look at the screen, not your hands.', 'Slow and steady, then fast and steady.', 'Ten minutes a day builds real speed.', 'Home row first, then the whole board.'];
 (function typewriter() {
   const el = $('#typewriter'); let li = 0, ci = 0, del = false;
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) { el.textContent = LINES[0]; return; }
@@ -36,7 +36,7 @@ const LINES = ['Look at the screen, not your hands.', 'Eight arms. Zero typos.',
   const rows = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'];
   wrap.innerHTML = `<div class="hk-out" id="hk-out"></div>` + rows.map(r => `<div class="hk-row">${[...r].map(k => `<span class="hk" data-k="${k}">${k.toUpperCase()}</span>`).join('')}</div>`).join('') + `<div class="hk-row"><span class="hk space" data-k=" "></span></div>`;
   const out = $('#hk-out');
-  const phrases = ['typo makes typing fun', 'eight arms zero typos', 'home row then speed', 'practise with gengo too'];
+  const phrases = ['typo makes typing fun', 'slow and steady wins wpm', 'home row then speed', 'practise with gengo too'];
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) { out.textContent = phrases[0]; return; }
   let pi = 0, ci = 0;
   const caret = document.createElement('span'); caret.className = 'cur';
