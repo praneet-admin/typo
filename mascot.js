@@ -1,45 +1,44 @@
-// Typo the octopus — inline SVG mascot used across pages. Eight arms, fast typing.
+// Typo the tortoise — flat SVG mascot in the TYPO palette. Slow and steady.
 const Mascot = (() => {
   const svg = (cls = '') => `<svg class="mascot ${cls}" viewBox="0 0 120 120" aria-hidden="true">
-  <g class="m-arms" fill="#8E1EA2" stroke="#3e0a49" stroke-width="3.5" stroke-linejoin="round">
-    <path class="arm a1" d="M28 72 C12 80 4 96 14 106 C22 112 30 102 24 94 C20 88 24 80 32 78Z"/>
-    <path class="arm a2" d="M40 84 C32 96 30 110 42 114 C50 116 52 106 46 100 C42 96 44 90 48 86Z"/>
-    <path class="arm a3" d="M92 72 C108 80 116 96 106 106 C98 112 90 102 96 94 C100 88 96 80 88 78Z"/>
-    <path class="arm a4" d="M80 84 C88 96 90 110 78 114 C70 116 68 106 74 100 C78 96 76 90 72 86Z"/>
-  </g>
-  <ellipse cx="60" cy="52" rx="38" ry="35" fill="#C654C3" stroke="#3e0a49" stroke-width="4"/>
-  <ellipse cx="48" cy="30" rx="14" ry="8" fill="#ED96D7" opacity=".7"/>
-  <g class="m-eyes">
-    <circle cx="46" cy="52" r="10" fill="#fff" stroke="#3e0a49" stroke-width="3"/>
-    <circle cx="74" cy="52" r="10" fill="#fff" stroke="#3e0a49" stroke-width="3"/>
-    <circle class="pupil" cx="48" cy="54" r="4.5" fill="#3e0a49"/>
-    <circle class="pupil" cx="76" cy="54" r="4.5" fill="#3e0a49"/>
-    <circle cx="50" cy="51" r="1.6" fill="#fff"/><circle cx="78" cy="51" r="1.6" fill="#fff"/>
-  </g>
-  <ellipse cx="34" cy="64" rx="6" ry="3.5" fill="#FFC0DE"/><ellipse cx="86" cy="64" rx="6" ry="3.5" fill="#FFC0DE"/>
-  <path class="m-mouth" d="M51 68 Q60 77 69 68" fill="none" stroke="#3e0a49" stroke-width="3.5" stroke-linecap="round"/>
-  <g class="m-key">
-    <rect x="42" y="86" width="36" height="26" rx="7" fill="#FFC0DE" stroke="#3e0a49" stroke-width="3.5"/>
-    <text x="60" y="105" text-anchor="middle" font-family="Nunito, sans-serif" font-weight="900" font-size="17" fill="#8E1EA2">T</text>
+  <defs><linearGradient id="tbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C654C3"/><stop offset="1" stop-color="#FFC0DE"/></linearGradient></defs>
+  <circle cx="60" cy="60" r="58" fill="url(#tbg)"/>
+  <circle cx="60" cy="60" r="58" fill="none" stroke="#8E1EA2" stroke-width="3"/>
+  <g class="m-body">
+    <!-- shell -->
+    <path d="M14 82 C14 56 30 42 52 42 C72 42 84 56 84 80 Z" fill="#5f7d3e" stroke="#2f3f20" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M34 60 l10 -7 l11 3 l4 11 l-7 9 l-12 1 l-6 -9 z" fill="#7aa050" stroke="#2f3f20" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M22 76 l8 -6 l6 8 l-4 6 z M60 72 l9 -4 l6 7 l-6 7 l-7 -3 z M44 44 l8 -1 l4 6 l-9 3 z" fill="#7aa050" stroke="#2f3f20" stroke-width="2.5" stroke-linejoin="round"/>
+    <rect x="12" y="80" width="74" height="10" rx="5" fill="#e8c98a" stroke="#2f3f20" stroke-width="3.5"/>
+    <!-- legs -->
+    <ellipse cx="30" cy="94" rx="9" ry="5.5" fill="#a8c66c" stroke="#2f3f20" stroke-width="3"/>
+    <ellipse cx="66" cy="94" rx="9" ry="5.5" fill="#a8c66c" stroke="#2f3f20" stroke-width="3"/>
+    <!-- neck + head -->
+    <path d="M70 72 C76 66 80 60 84 54" fill="none" stroke="#a8c66c" stroke-width="16" stroke-linecap="round"/>
+    <path d="M70 72 C76 66 80 60 84 54" fill="none" stroke="#2f3f20" stroke-width="22" stroke-linecap="round" opacity="0"/>
+    <circle class="m-head" cx="88" cy="46" r="20" fill="#a8c66c" stroke="#2f3f20" stroke-width="3.5"/>
+    <ellipse cx="82" cy="36" rx="7" ry="4" fill="#c6dd97" opacity=".8"/>
+    <!-- glasses -->
+    <g class="m-eyes">
+      <circle cx="80" cy="46" r="7.5" fill="#fff" stroke="#3e0a49" stroke-width="3"/>
+      <circle cx="98" cy="46" r="7.5" fill="#fff" stroke="#3e0a49" stroke-width="3"/>
+      <path d="M87.5 46 h3" stroke="#3e0a49" stroke-width="3" stroke-linecap="round"/>
+      <path d="M72.5 44 l-4 -2" stroke="#3e0a49" stroke-width="3" stroke-linecap="round"/>
+      <circle class="pupil" cx="82" cy="47" r="3.2" fill="#2b1033"/>
+      <circle class="pupil" cx="100" cy="47" r="3.2" fill="#2b1033"/>
+      <circle cx="83.2" cy="45.6" r="1.1" fill="#fff"/><circle cx="101.2" cy="45.6" r="1.1" fill="#fff"/>
+    </g>
+    <ellipse cx="103" cy="56" rx="4" ry="2.4" fill="#ED96D7"/>
+    <path class="m-mouth" d="M84 58 Q90 63 96 58" fill="none" stroke="#2f3f20" stroke-width="3" stroke-linecap="round"/>
   </g>
 </svg>`;
   const favicon = () => {
     const link = document.createElement('link'); link.rel = 'icon';
-    link.href = 'data:image/svg+xml,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><rect width="120" height="120" rx="28" fill="#8E1EA2"/><ellipse cx="60" cy="58" rx="36" ry="33" fill="#C654C3" stroke="#3e0a49" stroke-width="5"/><circle cx="47" cy="58" r="10" fill="#fff"/><circle cx="73" cy="58" r="10" fill="#fff"/><circle cx="49" cy="60" r="5" fill="#3e0a49"/><circle cx="75" cy="60" r="5" fill="#3e0a49"/><path d="M50 74 Q60 84 70 74" fill="none" stroke="#3e0a49" stroke-width="4" stroke-linecap="round"/></svg>`);
+    link.href = 'data:image/svg+xml,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><circle cx="60" cy="60" r="58" fill="#C654C3"/><circle cx="60" cy="62" r="34" fill="#a8c66c" stroke="#2f3f20" stroke-width="5"/><circle cx="46" cy="60" r="12" fill="#fff" stroke="#3e0a49" stroke-width="5"/><circle cx="76" cy="60" r="12" fill="#fff" stroke="#3e0a49" stroke-width="5"/><path d="M58 60h6" stroke="#3e0a49" stroke-width="5"/><circle cx="49" cy="62" r="5" fill="#2b1033"/><circle cx="79" cy="62" r="5" fill="#2b1033"/><path d="M50 80 Q60 90 70 80" fill="none" stroke="#2f3f20" stroke-width="5" stroke-linecap="round"/></svg>`);
     document.head.appendChild(link);
   };
-  // react: quick pop on each keystroke, wobble on error, party on success
   const react = (el, kind) => { if (!el) return; el.classList.remove('is-tap', 'is-oops', 'is-party'); void el.offsetWidth; el.classList.add('is-' + kind); };
-  // Brand logo: uses logo.png when present, falls back to the SVG mascot.
-  const logo = (el, cls = '') => {
-    if (!el) return;
-    const img = new Image(); img.alt = 'TYPO'; img.className = 'brand-logo mascot ' + cls; img.decoding = 'async';
-    img.onload = () => { el.innerHTML = ''; el.appendChild(img); el.classList.add('has-logo'); };
-    img.onerror = () => { el.innerHTML = svg(cls); };
-    img.src = 'logo.png';
-    el.innerHTML = svg(cls);
-  };
+  const logo = (el, cls = '') => { if (el) { el.innerHTML = svg(cls); el.classList.remove('has-logo'); } };
   return { svg, favicon, react, logo };
 })();
 Mascot.favicon();
-(function(){ const i = new Image(); i.onload = () => { document.querySelectorAll('link[rel=icon]').forEach(l => l.href = 'logo.png'); }; i.src = 'logo.png'; })();

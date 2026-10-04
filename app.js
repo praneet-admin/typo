@@ -47,7 +47,6 @@ const LINES = ['Look at the screen, not your hands.', 'Slow and steady, then fas
       if (key) { key.classList.add('is-down'); setTimeout(() => key.classList.remove('is-down'), 140); }
       const s = document.createElement('span'); s.className = 'ch'; s.textContent = ch === ' ' ? ' ' : ch;
       out.insertBefore(s, caret.parentNode ? caret : null); if (!caret.parentNode) out.appendChild(caret);
-      Mascot.react($('#hero-mascot .mascot'), 'tap');
       ci++; setTimeout(tick, 110 + Math.random() * 90);
     } else { setTimeout(() => { out.innerHTML = ''; out.appendChild(caret); ci = 0; pi = (pi + 1) % phrases.length; tick(); }, 1600); }
   })();

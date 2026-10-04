@@ -366,29 +366,30 @@ small { color: var(--ink-500); font-size: .72rem; font-weight: 800; letter-spaci
   .hero-keys .hk-out { font-size: .95rem; }
 }
 
-/* brand logo image (logo.png): the illustration carries its own circle, so clip only the white corners */
-.brand-logo { width: 100%; height: 100%; object-fit: contain; display: block; clip-path: circle(45.5% at 50% 50%); }
-.logo-wrap { width: 60px; height: 60px; filter: drop-shadow(0 4px 10px rgba(0,0,0,.35)); }
-.logo-wrap .brand-logo { animation: bob 4s ease-in-out infinite; }
-.hero-mascot { width: 180px; }
-.hero-mascot .brand-logo { animation: bob 3.4s ease-in-out infinite; filter: drop-shadow(0 10px 24px rgba(142,30,162,.35)); }
+/* mascot (flat SVG tortoise) — calm by default */
+.mascot { width: 100%; height: 100%; display: block; overflow: visible; }
+.logo-wrap { width: 52px; height: 52px; filter: drop-shadow(0 3px 0 rgba(0,0,0,.25)); }
+.logo-wrap .mascot { animation: none; }
+.hero-mascot { width: 150px; flex: none; }
+.hero-mascot .mascot { animation: bob 5s ease-in-out infinite; }
 .hero-copy { align-items: center; }
-.welcome-mascot { width: 200px; margin: -.4rem auto .2rem; }
-.welcome-mascot .brand-logo { animation: bob 3s ease-in-out infinite; }
-.result-mascot { width: 150px; margin: -.4rem auto 0; }
-.text-box { padding-left: 8.2rem; }
-.text-mascot { width: 104px; left: .9rem; }
-.text-mascot .brand-logo { animation: none; }
-.brand-logo.is-tap { animation: tap 180ms var(--bounce) !important; }
-.brand-logo.is-oops { animation: shake 320ms var(--ease) !important; }
-.brand-logo.is-party { animation: celebrate 700ms var(--bounce) 2 !important; }
-@keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-.lesson-page .logo-wrap { width: 54px; height: 54px; }
+.welcome-mascot { width: 160px; margin: -.3rem auto .3rem; }
+.result-mascot { width: 130px; margin: -.3rem auto 0; }
+.text-box { padding-left: 7.4rem; }
+.text-mascot { width: 92px; left: .9rem; }
+.mascot .pupil { transition: transform 300ms var(--ease); }
+.mascot.is-oops { animation: shake 320ms var(--ease); }
+.mascot.is-oops .m-mouth { d: path("M84 62 Q90 57 96 62"); }
+.mascot.is-party { animation: celebrate 700ms var(--bounce) 2; }
+.mascot.is-party .m-head { animation: nod 500ms ease-in-out 3; transform-origin: 84px 60px; }
+@keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+@keyframes nod { 0%,100% { transform: rotate(0); } 50% { transform: rotate(-8deg); } }
+.lesson-page .logo-wrap { width: 48px; height: 48px; }
 @media (max-width: 640px) {
-  .logo-wrap, .lesson-page .logo-wrap { width: 46px; height: 46px; }
-  .hero-mascot { width: 130px; }
-  .welcome-mascot { width: 150px; } .result-mascot { width: 120px; }
-  .text-box { padding-left: 5.6rem; } .text-mascot { width: 68px; left: .5rem; }
+  .logo-wrap, .lesson-page .logo-wrap { width: 42px; height: 42px; }
+  .hero-mascot { width: 110px; }
+  .welcome-mascot { width: 130px; } .result-mascot { width: 110px; }
+  .text-box { padding-left: 5.2rem; } .text-mascot { width: 62px; left: .5rem; }
 }
 /* dialogs read as cards in dark mode */
 :root[data-theme="dark"] .modal { background: rgba(14,5,20,.72); }

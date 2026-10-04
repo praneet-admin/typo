@@ -113,14 +113,14 @@ function onKey(e) {
   startTimer();
   const expected = text[pos];
   if (e.key === expected) {
-    spans[pos].classList.remove('cur', 'bad'); spans[pos].classList.add('ok'); flashKey(e.key, false); click(false); mascots().forEach(m => Mascot.react(m, 'tap'));
+    spans[pos].classList.remove('cur', 'bad'); spans[pos].classList.add('ok'); flashKey(e.key, false); click(false);
     pos++;
     if (pos >= text.length) { nextScreen(); return; }
     spans[pos].classList.add('cur'); spans[pos].scrollIntoView({ block: 'nearest' }); highlightNext(text[pos]);
     const look = (pos / text.length) * 4 - 2; document.querySelectorAll('#text-mascot .pupil').forEach(p => p.style.transform = `translate(${look.toFixed(1)}px, 0)`);
   } else {
     screenErrors++; spans[pos].classList.add('bad'); flashKey(e.key, true); click(true);
-    const tb = $('#text-box'); tb.classList.remove('is-shake'); void tb.offsetWidth; tb.classList.add('is-shake'); mascots().forEach(m => Mascot.react(m, 'oops'));
+    const tb = $('#text-box'); tb.classList.remove('is-shake'); void tb.offsetWidth; tb.classList.add('is-shake'); Mascot.react($('#text-mascot .mascot'), 'oops');
   }
   updateStats();
 }

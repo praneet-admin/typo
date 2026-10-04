@@ -6,7 +6,7 @@ palette #8E1EA2 · #C654C3 · #ED96D7 · #FFC0DE, and linked to its sister vocab
 
 - `index.html` — lesson catalog: profile bar (level, XP, averages, daily goal ring), course sidebar, unit list with per-lesson stars.
 - `lesson.html?id=…` — lesson player: highlighted text, on-screen keyboard with next-key + finger hints, live WPM/accuracy, result modal with XP.
-- `mascot.js` — Typo the octopus, inline SVG, reacts to keystrokes (tap / oops / party).
+- `mascot.js` — Typo the tortoise, flat inline SVG mascot; shakes on a wrong key, nods on completion.
 - Progress lives in `localStorage` under `typo-progress-v1`. Plain HTML/CSS/JS, no build step.
 
 Run locally:
