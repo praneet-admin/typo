@@ -44,10 +44,21 @@ const Mascot = (() => {
     const img = new Image(); img.alt = 'Typo the tortoise'; img.className = 'brand-logo mascot ' + cls; img.decoding = 'async';
     img.onload = () => { el.innerHTML = ''; el.appendChild(img); el.classList.add('has-logo'); };
     img.onerror = () => { el.innerHTML = svg(cls); el.classList.remove('has-logo'); };
-    img.src = 'logo.png?v=7';
+    img.src = 'logo.png?v=8';
     el.innerHTML = svg(cls);
   };
-  return { svg, favicon, react, logo };
+  // Buddy: Gengo-style speech bubble with moods (happy / cheer / sad / think)
+  let holdTimer = null, idleTimer = null, idleLines = [];
+  const say = (text, mood = 'happy', holdMs = 2600) => {
+    const b = document.getElementById('buddy-bubble'), m = document.querySelector('#buddy .mascot');
+    if (!b) return;
+    b.textContent = text; b.classList.remove('is-pop'); void b.offsetWidth; b.classList.add('is-pop');
+    if (m) { m.classList.remove('is-happy', 'is-cheer', 'is-sad', 'is-think'); void m.offsetWidth; m.classList.add('is-' + mood); }
+    clearTimeout(holdTimer); clearTimeout(idleTimer);
+    holdTimer = setTimeout(idle, holdMs + 4000);
+  };
+  const idle = () => { if (!idleLines.length) return; const t = idleLines[Math.floor(Math.random() * idleLines.length)]; const b = document.getElementById('buddy-bubble'); if (b && b.textContent !== t) { b.textContent = t; b.classList.remove('is-pop'); void b.offsetWidth; b.classList.add('is-pop'); } idleTimer = setTimeout(idle, 9000); };
+  const setIdle = lines => { idleLines = lines; clearTimeout(idleTimer); idleTimer = setTimeout(idle, 9000); };
+  return { svg, favicon, react, logo, say, setIdle };
 })();
-Mascot.favicon();
-(function(){ const i = new Image(); i.onload = () => { document.querySelectorAll('link[rel=icon]').forEach(l => l.href = 'logo.png?v=7'); }; i.src = 'logo.png?v=7'; })();
+if (!document.querySelector('link[rel=icon]')) Mascot.favicon();

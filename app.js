@@ -5,7 +5,8 @@ let activeCourse = localStorage.getItem('typo-course') || 'keys-1';
 const DAILY = 3;
 
 // Mascots
-Mascot.logo($('#logo')); Mascot.logo($('#hero-mascot')); Mascot.logo($('#welcome-mascot'));
+Mascot.logo($('#logo')); Mascot.logo($('#hero-mascot')); Mascot.logo($('#welcome-mascot')); Mascot.logo($('#buddy'));
+Mascot.setIdle(['Eyes on the screen, not the keys.', 'Slow and steady, then fast and steady.', 'F and J have little bumps. Feel them?', 'Three lessons a day keeps the rust away.', 'Accuracy first. Speed follows.', 'Big words too? Gengo has you covered.']);
 
 // Header menu
 const menu = $('#menu'), menuBtn = $('#menu-btn');
@@ -62,7 +63,7 @@ function renderChips() {
     const done = c.units.reduce((a, u) => a + u.lessons.filter(l => Progress.lesson(l.id)).length, 0);
     const b = document.createElement('button'); b.className = 'chip' + (c.id === activeCourse ? ' active' : '');
     b.innerHTML = `${c.name} <small>${done}/${total}</small>`;
-    b.onclick = () => { activeCourse = c.id; localStorage.setItem('typo-course', c.id); renderChips(); renderCourse(); };
+    b.onclick = () => { activeCourse = c.id; localStorage.setItem('typo-course', c.id); renderChips(); renderCourse(); Mascot.say(`${c.name}: ${done}/${total} done. Let's go!`, 'think'); };
     el.appendChild(b);
   });
 }
@@ -107,7 +108,7 @@ function renderProfile() {
   $('#hero-cta').href = `lesson.html?id=${nxt.id}`; $('#hero-cta').textContent = started ? 'Continue ▶' : 'Start typing ▶';
 }
 
-$('#reset-progress').onclick = () => { menu.hidden = true; if (confirm('Reset all TYPO progress on this device?')) { Progress.reset(); renderProfile(); renderChips(); renderCourse(); Effects.toast('Progress reset', '🧹'); } };
+$('#reset-progress').onclick = () => { menu.hidden = true; if (confirm('Reset all TYPO progress on this device?')) { Progress.reset(); renderProfile(); renderChips(); renderCourse(); Effects.toast('Progress reset', '🧹'); Mascot.say('Fresh start. Home row, here we come.', 'think'); } };
 $('#cert-btn').onclick = () => {
   const course = CURRICULUM.course(activeCourse);
   const total = course.units.reduce((a, u) => a + u.lessons.length, 0);
@@ -128,6 +129,7 @@ $('#welcome-skip').onclick = () => { $('#welcome').hidden = true; localStorage.s
 renderChips(); renderCourse(); renderProfile();
 if (new URLSearchParams(location.search).get('done')) {
   Effects.toast('Progress saved. Nice work!', '🏆'); setTimeout(() => { Effects.bump($('#pill-xp')); Effects.bump($('#pill-goal')); }, 400);
+  const dt = $('#today-pill').textContent; setTimeout(() => Mascot.say(dt.startsWith('3') ? 'GOAL! 3/3 today. You did the thing!' : `Nice one! ${dt} for today's goal.`, 'cheer', 3200), 300);
   history.replaceState(null, '', 'index.html');
 } else if (!localStorage.getItem('typo-welcomed') && !Object.keys(Progress.data.lessons).length) {
   setTimeout(() => { $('#welcome').hidden = false; }, 600);

@@ -397,13 +397,44 @@ small { color: var(--ink-500); font-size: .72rem; font-weight: 800; letter-spaci
 :root[data-theme="dark"] .modal-box p { color: #f1d4e8; }
 :root[data-theme="dark"] .modal-box h2 { color: #fff3fa; }
 
-/* turtle cutout logo on a gradient disc */
-.has-logo { border-radius: 50%; background: linear-gradient(135deg, #C654C3, #FFC0DE); display: grid; place-items: center; overflow: hidden; box-shadow: inset 0 0 0 3px rgba(142,30,162,.55); }
-.has-logo .brand-logo { width: 86%; height: 86%; object-fit: contain; object-position: center 60%; margin-top: 10%; filter: drop-shadow(0 3px 4px rgba(0,0,0,.28)); }
-.logo-wrap.has-logo { width: 54px; height: 54px; }
-.hero-mascot.has-logo .brand-logo { animation: bob 5s ease-in-out infinite; }
-.text-mascot.has-logo .brand-logo { animation: none; }
-.brand-logo.is-oops { animation: shake 320ms var(--ease) !important; }
-.brand-logo.is-party { animation: celebrate 700ms var(--bounce) 2 !important; }
-:root[data-theme="dark"] .has-logo { box-shadow: inset 0 0 0 3px rgba(255,192,222,.35), 0 6px 18px -8px rgba(198,84,195,.6); }
-@media (max-width: 640px) { .logo-wrap.has-logo { width: 44px; height: 44px; } }
+/* sticker logo (logo.png: turtle cutout with baked outline) */
+.has-logo { display: block; overflow: visible; }
+.has-logo .brand-logo { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,.3)); }
+.logo-wrap.has-logo { width: 58px; height: 58px; }
+.logo-wrap .brand-logo { animation: float 4s ease-in-out infinite; transform-origin: 50% 90%; }
+.hero-mascot { width: 170px; }
+.hero-mascot .brand-logo { animation: float 3.6s ease-in-out infinite; transform-origin: 50% 90%; }
+.welcome-mascot { width: 170px; } .result-mascot { width: 140px; }
+.text-mascot { width: 92px; }
+.text-mascot .brand-logo { animation: none; }
+.brand-logo.is-sad, .mascot.is-sad { animation: buddy-wobble 600ms var(--ease) !important; }
+.brand-logo.is-happy, .mascot.is-happy { animation: buddy-jump 700ms var(--bounce) !important; }
+.brand-logo.is-cheer, .mascot.is-cheer { animation: buddy-spin 900ms var(--bounce) !important; }
+.brand-logo.is-think, .mascot.is-think { animation: buddy-think 900ms var(--ease) !important; }
+@keyframes buddy-jump { 0% { transform: translateY(0); } 40% { transform: translateY(-14px) scale(1.06); } 70% { transform: translateY(0) scale(.97); } 100% { transform: none; } }
+@keyframes buddy-spin { 0% { transform: rotate(0) scale(1); } 50% { transform: rotate(-12deg) scale(1.12); } 100% { transform: rotate(0) scale(1); } }
+@keyframes buddy-wobble { 0%,100% { transform: rotate(0); } 25% { transform: rotate(-7deg); } 75% { transform: rotate(7deg); } }
+@keyframes buddy-think { 0%,100% { transform: translateX(0); } 50% { transform: translateX(4px) rotate(2deg); } }
+
+/* buddy card (Gengo's "Gen says") */
+.buddy-card { display: grid; grid-template-columns: 104px 1fr; gap: .9rem; align-items: center; background: linear-gradient(160deg, var(--card), var(--bg-100)); overflow: visible; }
+.buddy-wrap { width: 104px; height: 104px; }
+.buddy-wrap .brand-logo { animation: float 3.6s ease-in-out infinite; transform-origin: 50% 90%; }
+.buddy-name { display: block; font-size: .72rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; color: var(--brand-700); margin-bottom: .35rem; }
+.buddy-bubble { position: relative; background: var(--card); border: 2px solid var(--bg-200); border-radius: var(--radius-lg); padding: .75rem .95rem; font-weight: 800; font-size: .95rem; color: var(--ink-900); min-height: 3.2rem; display: flex; align-items: center; animation: bubble-idle 5s ease-in-out infinite; }
+.buddy-bubble::before { content: ""; position: absolute; left: -11px; top: 50%; width: 18px; height: 18px; background: var(--card); border-left: 2px solid var(--bg-200); border-bottom: 2px solid var(--bg-200); transform: translateY(-50%) rotate(45deg); }
+.buddy-bubble.is-pop { animation: bubble-pop 400ms var(--bounce); }
+.buddy-link { display: inline-block; margin-top: .55rem; font-size: .82rem; font-weight: 900; color: var(--brand-700); text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 3px; transition: text-decoration-color var(--speed) var(--ease); }
+.buddy-link:hover { text-decoration-color: var(--brand-500); }
+@keyframes bubble-pop { 0% { transform: scale(.9); opacity: .4; } 100% { transform: none; opacity: 1; } }
+@keyframes bubble-idle { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+:root[data-theme="dark"] .buddy-card { background: linear-gradient(160deg, #251230, #3b1c48); }
+:root[data-theme="dark"] .buddy-bubble { background: #2e1739; border-color: #5a2f6c; }
+:root[data-theme="dark"] .buddy-bubble::before { background: #2e1739; border-color: #5a2f6c; }
+:root[data-theme="dark"] .buddy-name, :root[data-theme="dark"] .buddy-link { color: #ED96D7; }
+@media (max-width: 900px) { .buddy-card { grid-column: 1 / -1; } }
+@media (max-width: 640px) {
+  .logo-wrap.has-logo { width: 46px; height: 46px; }
+  .hero-mascot { width: 120px; } .welcome-mascot { width: 140px; } .result-mascot { width: 110px; }
+  .buddy-card { grid-template-columns: 80px 1fr; } .buddy-wrap { width: 80px; height: 80px; }
+}

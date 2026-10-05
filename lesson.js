@@ -120,14 +120,14 @@ function onKey(e) {
     const look = (pos / text.length) * 4 - 2; document.querySelectorAll('#text-mascot .pupil').forEach(p => p.style.transform = `translate(${look.toFixed(1)}px, 0)`);
   } else {
     screenErrors++; spans[pos].classList.add('bad'); flashKey(e.key, true); click(true);
-    const tb = $('#text-box'); tb.classList.remove('is-shake'); void tb.offsetWidth; tb.classList.add('is-shake'); Mascot.react($('#text-mascot .mascot'), 'oops');
+    const tb = $('#text-box'); tb.classList.remove('is-shake'); void tb.offsetWidth; tb.classList.add('is-shake'); Mascot.react($('#text-mascot .mascot'), 'sad');
   }
   updateStats();
 }
 function nextScreen() {
   totals.typed += text.length; totals.errors += screenErrors;
   if (screen + 1 >= lesson.screens.length) { finish(); return; }
-  screen++; Effects.toast(`Screen ${screen} done — ${lesson.screens.length - screen} to go`, '⚡');
+  screen++; Mascot.react($('#text-mascot .mascot'), 'happy'); Effects.toast(`Screen ${screen} done — ${lesson.screens.length - screen} to go`, '⚡');
   const r = $('#text-box').getBoundingClientRect(); Effects.xpFloat('+' + text.length * 2 + ' xp', r.right - 110, r.top + 10);
   loadScreen();
 }
@@ -147,7 +147,7 @@ function finish() {
   if (next) nb.href = `lesson.html?id=${next.id}`; else { nb.textContent = 'Back to lessons'; nb.href = 'index.html?done=1'; }
   $('#result-modal').hidden = false;
   if (r.stars >= 2) Effects.confetti(r.stars === 3 ? 48 : 28);
-  setTimeout(() => Mascot.react($('#result-mascot .mascot'), 'party'), 0);
+  setTimeout(() => Mascot.react($('#result-mascot .mascot'), 'cheer'), 0);
   setTimeout(() => $('#result-stars').classList.add('is-celebrating'), 150);
   $('#screen-fill').style.width = '100%';
 }
